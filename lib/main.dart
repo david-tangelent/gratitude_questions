@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(MyApp());
@@ -6,7 +7,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-  final String title = 'Gratitude Questions';
+  final String title = 'Feelgood Questions';
   final List<String> questions = [
     "What is something that made you laugh?",
     "What are you grateful for about the current season?",
@@ -67,11 +68,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final _random = Random();
 
   void _incrementCounter() {
     setState(
       () {
-        if (_counter < widget.questions.length) {
+        if (_counter < widget.questions.length - 1) {
           _counter++;
         } else {
           _counter = 0;
@@ -91,11 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              widget.questions[_counter],
+              '#$_counter',
+              style: Theme.of(context).textTheme.headline4,
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              widget.questions[_random.nextInt(widget.questions.length)],
+              style: const TextStyle(fontSize: 28),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
