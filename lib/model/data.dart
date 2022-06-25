@@ -46,6 +46,7 @@ final counterProvider = StateProvider<Counter>(
 
 class Counter extends StateNotifier<int> {
   Counter() : super(0);
+  //TODO: Make count start at #1, not #0
   int _count = 0;
   int get count => _count;
   set count(int val) {
